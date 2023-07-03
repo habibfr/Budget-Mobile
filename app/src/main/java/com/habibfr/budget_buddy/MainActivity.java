@@ -13,5 +13,6 @@ public class MainActivity extends AppCompatActivity {
 
 //        TES
         Integer tes10=0;
+        String what="no";
     }
 }
