@@ -12,6 +12,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 //        TES
+<<<<<<< HEAD
         Integer tes=0;
+=======
+        Integer tes10=0;
+        String what="no";
+>>>>>>> Deo
     }
 }
