@@ -7,13 +7,13 @@
         style="@style/groupStylegray_300cornerRadius"
         android:layout_width="@dimen/_150pxh"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
         android:layout_marginStart="@dimen/_10pxh"
         android:layout_marginEnd="@dimen/_10pxh"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/btnVector"
+            android:id="@+id/btnVectorCashflow"
             android:layout_width="@dimen/_48pxh"
             android:layout_height="@dimen/_48pxh"
             android:layout_marginStart="@dimen/_20pxh"
@@ -30,7 +30,7 @@
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/txtPrice"
+            android:id="@+id/txtAmountCashflow"
             style="@style/txtInterbold17"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
             tools:text="@string/lbl_1_800_00" />
 
         <TextView
-            android:id="@+id/txtIncome"
+            android:id="@+id/txtIncomeCashflow"
             style="@style/txtInterregular14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

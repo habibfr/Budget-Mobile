@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                new Konektor(LoginActivity.this, "http://192.168.43.37/pbm/uas/users/cek_login.php", new Uri.Builder().appendQueryParameter("email", editEmail.getText().toString()).appendQueryParameter("password", editPassword.getText().toString())).execute();
+                new Konektor(LoginActivity.this, "http://192.168.1.11/mobile/users/cek_login.php", new Uri.Builder().appendQueryParameter("email", editEmail.getText().toString()).appendQueryParameter("password", editPassword.getText().toString())).execute();
 
 
             }
