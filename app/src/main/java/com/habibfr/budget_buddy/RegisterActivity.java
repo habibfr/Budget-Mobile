@@ -16,11 +16,13 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+//        INSERT INTO `users` (`id`, `fullname`, `email`, `password`, `createdAt`) VALUES (NULL, 'Habib Fatkhul Rohman', 'habib@gmail.com', '12345', current_timestamp());
         txtLoginInRegister = findViewById(R.id.txtLoginInRegister);
 
         txtLoginInRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();

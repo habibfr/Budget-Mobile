@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_color"
     android:orientation="vertical"
     android:padding="5dp"
     tools:context=".LoginActivity">
@@ -40,13 +41,15 @@
         android:text="Username* : "
         android:textSize="17dp" />
 
+
     <EditText
-        android:id="@+id/txtUsernameLogin"
+        android:id="@+id/editEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:background="@drawable/border"
         android:hint="buddyman"
+        android:inputType="textEmailAddress"
         android:paddingHorizontal="20dp"
         android:paddingVertical="15dp" />
 
@@ -61,14 +64,23 @@
         android:textSize="17dp" />
 
     <EditText
-        android:id="@+id/txtPasswordLogin"
+        android:id="@+id/editPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:background="@drawable/border"
         android:hint="********"
+        android:inputType="textPassword"
         android:paddingHorizontal="20dp"
         android:paddingVertical="15dp" />
+    <TextView
+        android:id="@+id/txtMessageError"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_height="wrap_content"
+        android:textColor="#D81B1B"
+        android:visibility="gone"
+        android:text="Email or Password Wrong!!" />
 
     <Button
         android:id="@+id/btnLogin"
