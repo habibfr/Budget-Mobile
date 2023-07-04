@@ -216,13 +216,14 @@
             style="@style/groupStylewhite_A700"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="start">
+            android:gravity="center_horizontal">
 
             <FrameLayout
                 android:id="@+id/frameStackhome"
                 android:layout_width="@dimen/_316pxh"
-                android:layout_height="@dimen/_50pxv"
+                android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/_14pxv"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="@dimen/_18pxv">
 
                 <LinearLayout
@@ -292,6 +293,7 @@
                         android:layout_marginTop="@dimen/_2pxv"
                         android:layout_marginBottom="@dimen/_2pxv"
                         android:layout_weight="0.49"
+                        android:gravity="end"
                         android:orientation="horizontal">
 
                         <ImageView
