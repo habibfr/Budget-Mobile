@@ -1,5 +1,6 @@
 package com.habibfr.budget_buddy;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -41,6 +42,9 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.hide();
 
         txtRegisterInLogin = findViewById(R.id.txtSignUpInLogin);
         btnLogin = findViewById(R.id.btnLogin);
