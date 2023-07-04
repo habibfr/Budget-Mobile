@@ -25,7 +25,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -33,7 +32,7 @@ import java.nio.charset.StandardCharsets;
 
 public class LoginActivity extends AppCompatActivity {
 
-    TextView txtRegisterInLogin, txtMessageError;
+    TextView txtRegisterInLogin, txtMessageError, messageSuccessRegis;
     Button btnLogin;
     EditText editEmail, editPassword;
 
@@ -51,6 +50,24 @@ public class LoginActivity extends AppCompatActivity {
         editEmail = findViewById(R.id.editEmail);
         editPassword = findViewById(R.id.editPassword);
         txtMessageError = findViewById(R.id.txtMessageError);
+        messageSuccessRegis = findViewById(R.id.pesanSukesRegis);
+
+
+        Intent intent = getIntent();
+        if (intent != null) {
+            Bundle s = intent.getExtras();
+            if (s != null) {
+                String pesan = (String) s.get("message");
+
+                if ((!pesan.isEmpty()) || (pesan != null)) {
+                    messageSuccessRegis.setText("Successfully registration, please login!");
+                    messageSuccessRegis.setVisibility(View.VISIBLE);
+                }
+                System.out.println("null");
+            }
+
+        }
+
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
