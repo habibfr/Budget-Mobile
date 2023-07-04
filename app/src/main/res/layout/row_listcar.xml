@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <LinearLayout android:id="@+id/linearRowcar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal" style="@style/groupStylewhite_A700cornerRadius">
+        <ImageButton
+            android:background="@drawable/rectangle_bg_teal_200_23_radius_18"
+            android:id="@+id/btnCar"
+            android:layout_height="@dimen/_65pxh"
+            android:layout_marginBottom="@dimen/_7pxv"
+            android:layout_marginStart="@dimen/_6pxh"
+            android:layout_marginTop="@dimen/_7pxv"
+            android:layout_width="@dimen/_65pxh"
+            android:paddingHorizontal="@dimen/_18pxh"
+            android:paddingVertical="@dimen/_18pxv"
+            android:scaleType="fitCenter"
+            android:src="@drawable/img_car" tools:ignore="ContentDescription"/>
+        <LinearLayout android:gravity="start"
+            android:id="@+id/linearColumnshopping"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_17pxv"
+            android:layout_marginStart="@dimen/_12pxh"
+            android:layout_marginTop="@dimen/_16pxv"
+            android:layout_weight="0.56" android:layout_width="0dp" android:orientation="vertical">
+            <TextView android:ellipsize="end"
+                android:id="@+id/txtShopping"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:layout_width="wrap_content"
+                android:lineSpacingExtra="@dimen/_4pxh"
+                android:singleLine="true"
+                android:text="TES"
+                style="@style/txtIntersemibold16" tools:text="@string/lbl_shopping"/>
+            <TextView android:ellipsize="end"
+                android:id="@+id/txt10jan2022"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:layout_marginTop="@dimen/_9pxv"
+                android:layout_width="wrap_content"
+                android:lineSpacingExtra="@dimen/_3pxh"
+                android:singleLine="true"
+                android:text="TES"
+                style="@style/txtInterregular12" tools:text="@string/lbl_10_jan_2022"/>
+        </LinearLayout>
+        <LinearLayout android:gravity="end"
+            android:id="@+id/linearColumnrp544"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_18pxv"
+            android:layout_marginEnd="@dimen/_16pxh"
+            android:layout_marginStart="@dimen/_12pxh"
+            android:layout_marginTop="@dimen/_18pxv"
+            android:layout_weight="0.2" android:layout_width="0dp" android:orientation="vertical">
+            <TextView android:ellipsize="end" android:gravity="start"
+                android:id="@+id/txtRp544"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:lineSpacingExtra="@dimen/_4pxh"
+                android:singleLine="true"
+                android:text="TES"
+                style="@style/txtIntersemibold16" tools:text="@string/lbl_rp_544"/>
+            <TextView android:ellipsize="end"
+                android:id="@+id/txtInCash"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10pxh"
+                android:layout_marginTop="@dimen/_6pxv"
+                android:layout_width="match_parent"
+                android:lineSpacingExtra="@dimen/_3pxh"
+                android:singleLine="true"
+                android:text="TES"
+                style="@style/txtIntermedium12" tools:text="@string/lbl_in_cash"/>
+        </LinearLayout>
+    </LinearLayout>
+</layout>
