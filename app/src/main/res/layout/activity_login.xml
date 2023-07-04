@@ -30,6 +30,17 @@
         android:text="Welcome back, please enter your details."
         android:textAlignment="center" />
 
+    <TextView
+        android:id="@+id/pesanSukesRegis"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:textColor="@color/secondary_color"
+        android:text="Success register, please login!"
+        android:visibility="gone"
+        android:textAlignment="center" />
+
 
     <TextView
         android:layout_width="match_parent"
@@ -38,7 +49,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="5dp"
-        android:text="Username* : "
+        android:text="Email* : "
         android:textSize="17dp" />
 
 
@@ -48,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:background="@drawable/border"
-        android:hint="buddyman"
+        android:hint="budy@gmail.com"
         android:inputType="textEmailAddress"
         android:paddingHorizontal="20dp"
         android:paddingVertical="15dp" />

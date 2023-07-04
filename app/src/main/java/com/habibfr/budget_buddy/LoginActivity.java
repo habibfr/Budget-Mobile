@@ -1,5 +1,6 @@
 package com.habibfr.budget_buddy;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -24,7 +25,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -32,7 +32,7 @@ import java.nio.charset.StandardCharsets;
 
 public class LoginActivity extends AppCompatActivity {
 
-    TextView txtRegisterInLogin, txtMessageError;
+    TextView txtRegisterInLogin, txtMessageError, messageSuccessRegis;
     Button btnLogin;
     EditText editEmail, editPassword;
 
@@ -41,20 +41,38 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.hide();
 
         txtRegisterInLogin = findViewById(R.id.txtSignUpInLogin);
         btnLogin = findViewById(R.id.btnLogin);
         editEmail = findViewById(R.id.editEmail);
         editPassword = findViewById(R.id.editPassword);
         txtMessageError = findViewById(R.id.txtMessageError);
+        messageSuccessRegis = findViewById(R.id.pesanSukesRegis);
+
+
+        Intent intent = getIntent();
+        if (intent != null) {
+            Bundle s = intent.getExtras();
+            if (s != null) {
+                String pesan = (String) s.get("message");
+
+                if ((!pesan.isEmpty()) || (pesan != null)) {
+                    messageSuccessRegis.setText("Successfully registration, please login!");
+                    messageSuccessRegis.setVisibility(View.VISIBLE);
+                }
+                System.out.println("null");
+            }
+
+        }
+
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-                new Konektor(LoginActivity.this, "http://10.0.2.2/uas/users/cek_login.php", new Uri.Builder().appendQueryParameter("email", editEmail.getText().toString()).appendQueryParameter("password", editPassword.getText().toString())).execute();
-                //10.0.2.2 ip emulator
+                new Konektor(LoginActivity.this, "http://192.168.1.11/mobile/users/cek_login.php", new Uri.Builder().appendQueryParameter("email", editEmail.getText().toString()).appendQueryParameter("password", editPassword.getText().toString())).execute();
 
             }
         });

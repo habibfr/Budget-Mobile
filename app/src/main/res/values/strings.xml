@@ -22,4 +22,17 @@
     <string name="lbl_your_budget">Your Budget</string>
     <string name="lbl_online">Online</string>
     <string name="cashflow">Cashflow</string>
+    <string name="lbl_feb">Feb</string>
+    <string name="lbl_0">0</string>
+    <string name="lbl_tanggal_akhir">Tanggal akhir</string>
+    <string name="lbl_10k">10k</string>
+    <string name="lbl_20k">20k</string>
+    <string name="lbl_50k">50k</string>
+    <string name="lbl_apr">Apr</string>
+    <string name="lbl_laporan">Laporan</string>
+    <string name="lbl_rp_20k">Rp. 20K</string>
+    <string name="lbl_mar">Mar</string>
+    <string name="lbl_jan">Jan</string>
+    <string name="msg_riwayat_transak">Riwayat Transaksi</string>
+    <string name="lbl_tanggal_awal">Tanggal awal</string>
 </resources>
