@@ -72,10 +72,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 new Konektor(LoginActivity.this, "http://192.168.1.11/mobile/users/cek_login.php", new Uri.Builder().appendQueryParameter("email", editEmail.getText().toString()).appendQueryParameter("password", editPassword.getText().toString())).execute();
-
 
             }
         });
