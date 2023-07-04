@@ -26,8 +26,7 @@
             android:ellipsize="end"
             android:lineSpacingExtra="@dimen/_4pxh"
             android:singleLine="true"
-            android:text="@string/cashflow"
-            tools:text="@string/lbl_cash" />
+            android:text="@string/lbl_cash" />
 
         <TextView
             android:id="@+id/helloUsername"
