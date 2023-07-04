@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">budget_buddy</string>
+    <string name="loading">Loading…</string>
+    <string name="no_internet_connection">No internet connection!</string>
+    <string name="lbl_10_jan_2022">10 jan 2022</string>
+    <string name="lbl_restaurant">Restaurant</string>
+    <string name="lbl_shopping">Shopping</string>
+    <string name="lbl_rp_544">Rp.544</string>
+    <string name="lbl_transport">Transport</string>
+    <string name="lbl_cash">Cash</string>
+    <string name="lbl_rp_14k">Rp.14k </string>
+    <string name="lbl_1_800_00">$1,800.00</string>
+    <string name="lbl_rp_54k">Rp.54k </string>
+    <string name="lbl_card">Card</string>
+    <string name="lbl_income">Income</string>
+    <string name="lbl_expense">Expense</string>
+    <string name="msg_available_balan">Available balance</string>
+    <string name="lbl_12_jan_2022">12 jan 2022</string>
+    <string name="lbl_rp_50_000">Rp.50.000</string>
+    <string name="lbl_in_cash">In Cash</string>
+    <string name="lbl_11_jan_2022">11 jan 2022</string>
+    <string name="lbl_your_budget">Your Budget</string>
+    <string name="lbl_online">Online</string>
+    <string name="cashflow">Cashflow</string>
 </resources>
