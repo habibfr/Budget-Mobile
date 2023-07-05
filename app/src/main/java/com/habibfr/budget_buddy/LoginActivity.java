@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView txtRegisterInLogin, txtMessageError, messageSuccessRegis;
     Button btnLogin;
     EditText editEmail, editPassword;
+    User user;
 
 
     @Override
@@ -194,6 +195,7 @@ public class LoginActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             pdLoading.dismiss();
 //            setResult(s);
+
             try {
                 JSONObject result = new JSONObject(s);
                 String success = result.getString("success");
@@ -202,14 +204,17 @@ public class LoginActivity extends AppCompatActivity {
                     System.out.println("success");
                     System.out.println(result);
                     JSONArray users = result.getJSONArray("users");
-                    JSONObject user = null;
+                    JSONObject userData = null;
                     for (int i = 0; i < users.length(); i++) {
-                        user = users.getJSONObject(i);
-                        System.out.println(user);
+                        userData = users.getJSONObject(i);
+                        System.out.println(userData);
+                        String user_id = userData.getString("user_id");
+                        String fullname = userData.getString("fullname");
+                        String email = userData.getString("password");
+                        user = new User(user_id, fullname, email);
                     }
-
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-//                    intent.putExtra("user", (Serializable) user);
+                    intent.putExtra("user", user);
                     startActivity(intent);
                     finish();
 //                    System.out.println(dataUser.toString());
