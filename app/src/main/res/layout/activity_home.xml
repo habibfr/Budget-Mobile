@@ -176,19 +176,14 @@
                     android:ellipsize="end"
                     android:lineSpacingExtra="@dimen/_4pxh"
                     android:singleLine="true"
-                    android:text="@string/lbl_your_budget" />
+                    android:text="List Transaksi" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerListcar"
-                    style="@style/groupStylecornerRadius_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_13pxv"
-                    android:orientation="vertical"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:itemCount="3"
-                    tools:listitem="@layout/row_listcar" />
+                <ListView
+                    android:id="@+id/lvTransaksiHome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
 
