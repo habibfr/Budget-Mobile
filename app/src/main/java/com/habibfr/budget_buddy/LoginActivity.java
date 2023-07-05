@@ -211,7 +211,7 @@ public class LoginActivity extends AppCompatActivity {
                     JSONObject userData = null;
                     for (int i = 0; i < users.length(); i++) {
                         userData = users.getJSONObject(i);
-                        System.out.println(userData);
+//                        System.out.println(userData);
                         String user_id = userData.getString("user_id");
                         String fullname = userData.getString("fullname");
                         String email = userData.getString("password");
