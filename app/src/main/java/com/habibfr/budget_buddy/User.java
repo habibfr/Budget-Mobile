@@ -3,14 +3,14 @@ package com.habibfr.budget_buddy;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    private String user_id;
+    private int user_id;
     private String fullname;
     private String email;
     private String password;
     private String created_at;
     private String updated_at;
 
-    public User(String user_id, String fullname, String email, String password, String created_at, String updated_at) {
+    public User(int user_id, String fullname, String email, String password, String created_at, String updated_at) {
         this.user_id = user_id;
         this.fullname = fullname;
         this.email = email;
@@ -19,24 +19,24 @@ public class User implements Serializable {
         this.updated_at = updated_at;
     }
 
-    public User(String user_id, String fullname, String email, String password) {
+    public User(int user_id, String fullname, String email, String password) {
         this.user_id = user_id;
         this.fullname = fullname;
         this.email = email;
         this.password = password;
     }
 
-    public User(String user_id, String fullname, String email) {
+    public User(int user_id, String fullname, String email) {
         this.user_id = user_id;
         this.fullname = fullname;
         this.email = email;
     }
 
-    public String getUser_id() {
+    public int getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(String user_id) {
+    public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
 

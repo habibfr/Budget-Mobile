@@ -33,7 +33,7 @@
                 android:text="TES"
                 style="@style/txtIntersemibold16" tools:text="@string/lbl_shopping"/>
             <TextView android:ellipsize="end"
-                android:id="@+id/txt10jan2022"
+                android:id="@+id/tglTglTrxHome"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_10pxh"
                 android:layout_marginTop="@dimen/_9pxv"
@@ -52,7 +52,7 @@
             android:layout_marginTop="@dimen/_18pxv"
             android:layout_weight="0.2" android:layout_width="0dp" android:orientation="vertical">
             <TextView android:ellipsize="end" android:gravity="start"
-                android:id="@+id/txtRp544"
+                android:id="@+id/txtAmountTrxHome"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:lineSpacingExtra="@dimen/_4pxh"
@@ -60,7 +60,7 @@
                 android:text="TES"
                 style="@style/txtIntersemibold16" tools:text="@string/lbl_rp_544"/>
             <TextView android:ellipsize="end"
-                android:id="@+id/txtInCash"
+                android:id="@+id/txtTypeTrxHome"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10pxh"
                 android:layout_marginTop="@dimen/_6pxv"
