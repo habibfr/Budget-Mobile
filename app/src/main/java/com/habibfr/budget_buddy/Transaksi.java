@@ -8,11 +8,11 @@ public class Transaksi {
     private String title;
     private String date;
     private String type;
-    private String amount;
+    private Long amount;
     private String additional_info;
     private String created_at;
 
-    public Transaksi(int transaction_id, int user_id, String title, String date, String type, String amount, String additional_info, String created_at) {
+    public Transaksi(int transaction_id, int user_id, String title, String date, String type, Long amount, String additional_info, String created_at) {
         this.transaction_id = transaction_id;
         this.user_id = user_id;
         this.title = title;
@@ -63,11 +63,11 @@ public class Transaksi {
         this.type = type;
     }
 
-    public String getAmount() {
+    public Long getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(Long amount) {
         this.amount = amount;
     }
 

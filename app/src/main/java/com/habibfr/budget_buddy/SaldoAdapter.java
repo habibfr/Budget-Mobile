@@ -39,8 +39,10 @@ public class SaldoAdapter extends BaseAdapter {
         Saldo currenSaldo = (Saldo) getItem(i);
 
         TextView txtAmountMasukKeluar = view.findViewById(R.id.txtAmountMasukKeluar);
+        TextView txtIncomeOrExpensive = view.findViewById(R.id.txtIncomeOrExpensive);
 
-
+        txtAmountMasukKeluar.setText("Rp. "+currenSaldo.getSaldo());
+        txtIncomeOrExpensive.setText(currenSaldo.getFullname());
         return view;
     }
 }

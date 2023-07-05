@@ -11,6 +11,7 @@ import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -35,7 +36,7 @@ public class HomeActivity extends AppCompatActivity {
 
     FrameLayout frameTambahTransaksi;
     ImageView imgFolder;
-    TextView helloUsername;
+    TextView helloUsername, txtCashInCard;
     static String username = "";
     static int user_id = 0;
     private String URL = "http://192.168.43.37/pbm/uas/transactions/get_transactions.php";
@@ -44,8 +45,11 @@ public class HomeActivity extends AppCompatActivity {
     RequestQueue requestQueue;
 
     List<Transaksi> transaksiList = new ArrayList<>();
+    List<Saldo> saldoList = new ArrayList<>();
     TransaksiAdapter transaksiAdapter;
     ListView lvTransaksiHome;
+    GridView gvSaldoHome;
+    SaldoAdapter saldoAdapter;
 
 
     @Override
@@ -62,6 +66,13 @@ public class HomeActivity extends AppCompatActivity {
         imgFolder = findViewById(R.id.imageFolder);
         helloUsername = findViewById(R.id.helloUsername);
         lvTransaksiHome = findViewById(R.id.lvTransaksiHome);
+        txtCashInCard = findViewById(R.id.txtCashInCard);
+        gvSaldoHome = findViewById(R.id.gvSaldoHome);
+
+        saldoAdapter = new SaldoAdapter(getApplicationContext(), saldoList);
+        saldoList.add(new Saldo(1, "Income", "200000"));
+        saldoList.add(new Saldo(2, "Oucome", "100000"));
+        gvSaldoHome.setAdapter(saldoAdapter);
 
         Intent intentFromLogin = getIntent();
         if (intentFromLogin != null) {
@@ -74,7 +85,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         }
 
-        helloUsername.setText(username);
+        helloUsername.setText("Hello, " + username);
         stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -95,13 +106,13 @@ public class HomeActivity extends AppCompatActivity {
                         String amount = data.getString("amount");
                         String additional_info = data.getString("additional_info");
                         String created_at = data.getString("created_at");
-                        System.out.println(date);
-                        transaksiList.add(new Transaksi(transaction_id, user_id, title, date, type, amount, additional_info, created_at));
+//                        System.out.println(date);
+                        transaksiList.add(new Transaksi(transaction_id, user_id, title, date, type, Long.parseLong(amount), additional_info, created_at));
                     }
                     transaksiAdapter = new TransaksiAdapter(getApplicationContext(), transaksiList);
-                    System.out.println(transaksiList.size());
-                    lvTransaksiHome.setAdapter(transaksiAdapter);
                     transaksiAdapter.notifyDataSetChanged();
+//                    System.out.println(transaksiList.size());
+                    lvTransaksiHome.setAdapter(transaksiAdapter);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -127,27 +138,13 @@ public class HomeActivity extends AppCompatActivity {
                 try {
                     //instance of class JSONObj
                     JSONObject jsonObj = new JSONObject(response);
-                    System.out.println(jsonObj);
-                    String success = jsonObj.getString("status");
-                    //instance of class JSONObj. Isi parameter berdasarkan dari nama array di JSON
-                    JSONArray datas = jsonObj.getJSONArray("data");
-                    for (int i = 0; i < datas.length(); i++) {
-                        JSONObject data = datas.getJSONObject(i);
-                        int transaction_id = Integer.parseInt(data.getString("transaction_id"));
-                        int user_id = Integer.parseInt(data.getString("user_id"));
-                        String title = data.getString("title");
-                        String date = data.getString("date");
-                        String type = data.getString("type");
-                        String amount = data.getString("amount");
-                        String additional_info = data.getString("additional_info");
-                        String created_at = data.getString("created_at");
-                        System.out.println(date);
-                        transaksiList.add(new Transaksi(transaction_id, user_id, title, date, type, amount, additional_info, created_at));
-                    }
-                    transaksiAdapter = new TransaksiAdapter(getApplicationContext(), transaksiList);
-                    System.out.println(transaksiList.size());
-                    lvTransaksiHome.setAdapter(transaksiAdapter);
-                    transaksiAdapter.notifyDataSetChanged();
+//                    System.out.println(jsonObj);
+                    JSONObject datas = jsonObj.getJSONObject("data");
+                    System.out.println(datas);
+                    String saldo = datas.getString("saldo");
+                    txtCashInCard.setText("Rp. " +saldo);
+
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -167,12 +164,9 @@ public class HomeActivity extends AppCompatActivity {
             }
         };
 
-
-
-
-
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(stringRequest);
+        requestQueue.add(stringRequestSaldo);
 
 
         frameTambahTransaksi.setOnClickListener(view -> {

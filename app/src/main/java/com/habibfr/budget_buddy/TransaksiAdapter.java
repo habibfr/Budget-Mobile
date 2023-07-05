@@ -1,12 +1,17 @@
 package com.habibfr.budget_buddy;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import java.util.List;
 
@@ -47,10 +52,12 @@ public class TransaksiAdapter extends BaseAdapter {
 
         txtShopping.setText(currentTrx.getTitle());
         txtTglTglTrxHome.setText(currentTrx.getDate());
-        txtAmountTrxHome.setText("Rp. " + currentTrx.getAmount());
+        String amount = String.valueOf(currentTrx.getAmount());
+        txtAmountTrxHome.setText(String.format(amount));
         txtTypeTrxHome.setText(currentTrx.getType());
-        if(currentTrx.getType().equals("Masuk")){
+        if(currentTrx.getType().equals("Keluar")){
             btnCar.setImageResource(R.drawable.img_calendar);
+            btnCar.setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.rectangle_bg_gray_301_radius_24));
         }
 
         return view;
