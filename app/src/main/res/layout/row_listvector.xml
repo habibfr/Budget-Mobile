@@ -1,60 +1,52 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/linearColumnvector"
+        android:id="@+id/bgSaldoTengah"
         style="@style/groupStylegray_300cornerRadius"
-        android:layout_width="@dimen/_150pxh"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10pxh"
-        android:layout_marginEnd="@dimen/_10pxh"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_gravity="start"
+        android:orientation="vertical"
+        android:paddingHorizontal="10dp">
 
         <ImageView
-            android:id="@+id/btnVectorCashflow"
-            android:layout_width="@dimen/_48pxh"
-            android:layout_height="@dimen/_48pxh"
-            android:layout_marginStart="@dimen/_20pxh"
-            android:layout_marginTop="@dimen/_20pxv"
-            android:layout_marginEnd="@dimen/_20pxh"
-            android:background="@drawable/rectangle_bg_bluegray_600_radius_20"
-            android:contentDescription="tes"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            android:paddingHorizontal="@dimen/_11pxh"
-            android:paddingVertical="@dimen/_11pxv"
-            android:scaleType="fitCenter"
-            android:src="@drawable/img_vector"
-            tools:ignore="ContentDescription" />
-
-        <TextView
-            android:id="@+id/txtAmountCashflow"
-            style="@style/txtInterbold17"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20pxh"
-            android:layout_marginTop="@dimen/_49pxv"
-            android:layout_marginEnd="@dimen/_20pxh"
-            android:ellipsize="end"
-            android:lineSpacingExtra="@dimen/_4pxh"
-            android:singleLine="true"
-            android:text="Rp 3000"
-            tools:text="@string/lbl_1_800_00" />
-
-        <TextView
-            android:id="@+id/txtIncomeCashflow"
-            style="@style/txtInterregular14"
+            android:id="@+id/imgIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20pxh"
-            android:layout_marginTop="@dimen/_7pxv"
-            android:layout_marginEnd="@dimen/_20pxh"
-            android:layout_marginBottom="@dimen/_16pxv"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:text="Rp 5000"
-            tools:text="@string/lbl_income" />
+            android:layout_margin="20dp"
+            android:background="@drawable/rectangle_bg_bluegray_600_radius_20"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/img_vector" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtAmountMasukKeluar"
+                style="@style/txtInterbold17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rp. 300000"
+                android:textSize="40dp" />
+
+            <TextView
+                android:id="@+id/txtIncomeOrExpensive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Income"
+                android:textSize="20dp" />
+        </LinearLayout>
+
     </LinearLayout>
-</layout>
+
+</LinearLayout>

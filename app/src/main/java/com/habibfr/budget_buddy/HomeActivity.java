@@ -39,7 +39,8 @@ public class HomeActivity extends AppCompatActivity {
     static String username = "";
     static int user_id = 0;
     private String URL = "http://192.168.43.37/pbm/uas/transactions/get_transactions.php";
-    StringRequest stringRequest;
+    private final String URL_SALDO = "http://192.168.43.37/pbm/uas/transactions/get_saldo_per_account.php";
+    StringRequest stringRequest, stringRequestSaldo;
     RequestQueue requestQueue;
 
     List<Transaksi> transaksiList = new ArrayList<>();
@@ -101,18 +102,6 @@ public class HomeActivity extends AppCompatActivity {
                     System.out.println(transaksiList.size());
                     lvTransaksiHome.setAdapter(transaksiAdapter);
                     transaksiAdapter.notifyDataSetChanged();
-//                    //hitung jumlah baris data
-//                    for (int i = 0; i < jsonMahasiswa.length(); i++) {
-//                        jsonData = jsonMahasiswa.getJSONObject(i);
-//                        //tampung data ke dalam variabel
-//                        nim = jsonData.getString("nim");
-//                        nama = jsonData.getString("nama");
-//
-//                        //membuat data adapter menggunakan method add()
-//                        adapterMahasiswa.add("NIM = " + nim + "\n" + "Nama = " + nama);
-//                    }
-//                    //mengirim data adapter utk di tempatkan ke dalam List view menggunakan method setAdapter()
-//                    code_lvMahasiswa.setAdapter(adapterMahasiswa);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -132,19 +121,70 @@ public class HomeActivity extends AppCompatActivity {
             }
         };
 
+        stringRequestSaldo = new StringRequest(Request.Method.POST, URL_SALDO, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    //instance of class JSONObj
+                    JSONObject jsonObj = new JSONObject(response);
+                    System.out.println(jsonObj);
+                    String success = jsonObj.getString("status");
+                    //instance of class JSONObj. Isi parameter berdasarkan dari nama array di JSON
+                    JSONArray datas = jsonObj.getJSONArray("data");
+                    for (int i = 0; i < datas.length(); i++) {
+                        JSONObject data = datas.getJSONObject(i);
+                        int transaction_id = Integer.parseInt(data.getString("transaction_id"));
+                        int user_id = Integer.parseInt(data.getString("user_id"));
+                        String title = data.getString("title");
+                        String date = data.getString("date");
+                        String type = data.getString("type");
+                        String amount = data.getString("amount");
+                        String additional_info = data.getString("additional_info");
+                        String created_at = data.getString("created_at");
+                        System.out.println(date);
+                        transaksiList.add(new Transaksi(transaction_id, user_id, title, date, type, amount, additional_info, created_at));
+                    }
+                    transaksiAdapter = new TransaksiAdapter(getApplicationContext(), transaksiList);
+                    System.out.println(transaksiList.size());
+                    lvTransaksiHome.setAdapter(transaksiAdapter);
+                    transaksiAdapter.notifyDataSetChanged();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println(error.getMessage());
+            }
+        }) {
+            @NonNull
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("user_id", String.valueOf(user_id));
+                return params;
+            }
+        };
+
+
+
+
+
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(stringRequest);
 
 
-
         frameTambahTransaksi.setOnClickListener(view -> {
             Intent intent = new Intent(HomeActivity.this, FormActivity.class);
+            intent.putExtra("user_id", user_id);
             startActivity(intent);
             finish();
         });
 
         imgFolder.setOnClickListener(view -> {
             Intent intent = new Intent(HomeActivity.this, LaporanActivity.class);
+            intent.putExtra("user_id", user_id);
             startActivity(intent);
             finish();
         });
