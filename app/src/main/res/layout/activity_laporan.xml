@@ -62,7 +62,6 @@
         style="@style/groupStylegreen_300cornerRadius"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_50pxh"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lineChart">
@@ -160,23 +159,20 @@
     <LinearLayout
         android:id="@+id/linearColumn"
         style="@style/groupStylegray_100cornerRadius"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="408dp"
+        android:layout_height="384dp"
         android:layout_gravity="bottom|start"
-        android:layout_marginTop="@dimen/_115pxh"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="@id/linearRowlabel">
+        app:layout_constraintBottom_toBottomOf="@id/linearRowlabel"
+        app:layout_constraintEnd_toEndOf="@id/linearRowlabel"
+        app:layout_constraintStart_toStartOf="@id/linearRowlabel">
 
         <LinearLayout
             android:id="@+id/linearColumnriwayattransak"
             style="@style/groupStylecornerRadius"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_24pxh"
-            android:layout_marginTop="@dimen/_31pxv"
-            android:layout_marginEnd="@dimen/_24pxh"
-            android:layout_marginBottom="@dimen/_24pxv"
+            android:layout_margin="@dimen/_15pxh"
             android:gravity="start"
             android:orientation="vertical">
 
@@ -198,10 +194,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_16pxv"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:itemCount="3"
-                tools:listitem="@layout/row_laporan" />
+                android:orientation="vertical" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
