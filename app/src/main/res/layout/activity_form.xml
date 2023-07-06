@@ -5,31 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FormActivity">
+
     <LinearLayout
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/LL1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/green_300"
         android:gravity="center"
         android:orientation="horizontal"
-        android:background="@color/green_300"
-        >
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <ImageView
+            android:id="@+id/logo"
             android:layout_width="100dp"
             android:layout_height="97.6dp"
-            android:src="@drawable/logo_putih"
-            android:id="@+id/logo"
-            android:layout_marginBottom="66dp"
-            android:layout_marginTop="66dp"
-            />
+            android:layout_marginVertical="20dp"
+            android:src="@drawable/logo_putih" />
     </LinearLayout>
 
     <LinearLayout
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/LL2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,7 +33,9 @@
         android:orientation="vertical"
         android:paddingLeft="29dp"
         android:paddingRight="29dp"
-        >
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
@@ -58,9 +56,9 @@
                 android:id="@+id/auto_complete_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="9dp"
                 android:fontFamily="@font/intersemibold"
                 android:inputType="none"
+                android:padding="9dp"
                 android:textSize="17dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,11 +70,11 @@
             android:textSize="17dp" />
 
         <EditText
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter"
             android:hint="Beli Sampo HSR"
-            android:id="@+id/title"
             android:textSize="17dp" />
 
         <TextView
@@ -88,8 +86,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
 
 
             <EditText
@@ -110,10 +109,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
-                android:text="pilih_tanggal"
+                android:text="tanggal"
                 android:textAlignment="textStart"
                 android:textAllCaps="false" />
         </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -122,11 +122,11 @@
             android:textSize="17dp" />
 
         <EditText
+            android:id="@+id/amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter"
             android:hint="Rp.20000"
-            android:id="@+id/amount"
             android:textSize="17dp" />
 
         <TextView
@@ -137,10 +137,10 @@
             android:textSize="17dp" />
 
         <EditText
+            android:id="@+id/additional_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter"
-            android:id="@+id/additional_info"
             android:hint="Beli Sampo HSR Di stasiun wonokromo"
             android:textSize="17dp" />
 
@@ -148,35 +148,34 @@
             android:id="@+id/LL3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
             android:paddingTop="30dp"
-            android:paddingBottom="30dp"
-            android:orientation="horizontal">
+            android:paddingBottom="30dp">
 
             <Button
                 android:id="@+id/btn_batal"
-                android:layout_width="150dp"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:paddingVertical="14dp"
+                android:layout_marginEnd="5dp"
                 android:background="@drawable/btn_radius_batal"
-                android:textSize="16dp"
+                android:gravity="center"
                 android:hint="Batal"
+                android:paddingVertical="10dp"
                 android:textColorHint="@color/white"
-                />
+                android:textSize="16dp" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
 
             <Button
                 android:id="@+id/submit"
-                android:layout_width="150dp"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:textColorHint="@color/white"
-                android:paddingVertical="14dp"
-                android:textSize="16dp"
+                android:layout_marginLeft="5dp"
                 android:background="@drawable/btn_radius_simpan"
-                android:hint="Simpan" />
+                android:hint="Simpan"
+                android:paddingVertical="10dp"
+                android:textColorHint="@color/white"
+                android:textSize="16dp" />
 
         </LinearLayout>
 
