@@ -14,6 +14,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin;
     EditText editEmail, editPassword;
     User user;
+
 
 
     @Override
@@ -207,11 +211,11 @@ public class LoginActivity extends AppCompatActivity {
                     JSONObject userData = null;
                     for (int i = 0; i < users.length(); i++) {
                         userData = users.getJSONObject(i);
-                        System.out.println(userData);
+//                        System.out.println(userData);
                         String user_id = userData.getString("user_id");
                         String fullname = userData.getString("fullname");
                         String email = userData.getString("password");
-                        user = new User(user_id, fullname, email);
+                        user = new User(Integer.parseInt(user_id), fullname, email);
                     }
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                     intent.putExtra("user", user);

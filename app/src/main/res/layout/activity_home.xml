@@ -6,40 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/layoutHeaderHome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_33pxh"
-        android:layout_marginTop="@dimen/_33pxh"
-        android:layout_marginEnd="@dimen/_33pxh"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            style="@style/txtInterNormal20"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_10pxh"
-            android:ellipsize="end"
-            android:lineSpacingExtra="@dimen/_4pxh"
-            android:singleLine="true"
-            android:text="@string/lbl_cash" />
-
-        <TextView
-            android:id="@+id/helloUsername"
-            style="@style/txtInterNormal20"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_10pxh"
-            android:ellipsize="end"
-            android:lineSpacingExtra="@dimen/_4pxh"
-            android:singleLine="true"
-            android:text="User" />
-
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearHomeAsli"
@@ -49,8 +15,20 @@
         android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutHeaderHome">
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/helloUsername"
+            style="@style/txtInterNormal20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="@dimen/_10pxh"
+            android:ellipsize="end"
+            android:lineSpacingExtra="@dimen/_4pxh"
+            android:singleLine="true"
+            android:text="Hello, Username" />
 
         <LinearLayout
             android:id="@+id/linearColumngroupthirtysix"
@@ -64,23 +42,21 @@
 
             <LinearLayout
                 android:id="@+id/linearRowavailablebalan"
-                style="@style/groupStylegreen_300cornerRadius"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bg_saldo_home"
                 android:gravity="end"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/linearColumn"
                     style="@style/groupStylecornerRadius"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_20pxh"
-                    android:layout_marginTop="@dimen/_25pxv"
-                    android:layout_marginBottom="@dimen/_75pxv"
                     android:layout_weight="0.5"
                     android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="30dp">
 
                     <LinearLayout
                         android:id="@+id/linearColumnavailablebalan"
@@ -106,89 +82,86 @@
                             style="@style/txtIntersemibold29"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_14pxv"
                             android:ellipsize="end"
                             android:lineSpacingExtra="@dimen/_7pxh"
                             android:singleLine="true"
-                            android:text="@string/lbl_rp_50_000" />
-
+                            android:text="@string/lbl_rp_50_000"
+                            android:textSize="40dp" />
                     </LinearLayout>
                 </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/imageGroupThirtySix"
-                    android:layout_width="@dimen/_147pxh"
-                    android:layout_height="@dimen/_120pxh"
-                    android:layout_marginStart="@dimen/_13pxh"
-                    android:layout_marginTop="@dimen/_46pxv"
-                    android:rotation="4"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_group36"
-                    tools:ignore="ContentDescription" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/linearColumncash"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_17pxv"
-                android:gravity="start"
-                android:orientation="vertical">
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/txtCash"
-                    style="@style/txtIntersemibold15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_10pxh"
-                    android:ellipsize="end"
-                    android:lineSpacingExtra="@dimen/_4pxh"
-                    android:singleLine="true"
-                    android:text="@string/cashflow" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerListvector"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_14pxv"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:itemCount="2"
-                    tools:listitem="@layout/row_listvector" />
-            </LinearLayout>
+                    android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/linearColumnyourbudget"
-                style="@style/groupStylecornerRadius_1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20pxv"
-                android:gravity="start"
-                android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/linearColumncash"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_17pxv"
+                        android:gravity="start"
+                        android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/txtYourBudget"
-                    style="@style/txtIntersemibold15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_1pxh"
-                    android:layout_marginEnd="@dimen/_10pxh"
-                    android:ellipsize="end"
-                    android:lineSpacingExtra="@dimen/_4pxh"
-                    android:singleLine="true"
-                    android:text="@string/lbl_your_budget" />
+                        <TextView
+                            android:id="@+id/txtCash"
+                            style="@style/txtIntersemibold15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_10pxh"
+                            android:ellipsize="end"
+                            android:lineSpacingExtra="@dimen/_4pxh"
+                            android:singleLine="true"
+                            android:text="@string/cashflow" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerListcar"
-                    style="@style/groupStylecornerRadius_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_13pxv"
-                    android:orientation="vertical"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:itemCount="3"
-                    tools:listitem="@layout/row_listcar" />
-            </LinearLayout>
+                        <GridView
+                            android:id="@+id/gvSaldoHome"
+                            android:layout_width="match_parent"
+                            android:layout_height="105dp"
+                            android:layout_marginTop="10dp"
+                            android:numColumns="2"
+                            android:horizontalSpacing="5dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearColumnyourbudget"
+                        style="@style/groupStylecornerRadius_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="start"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtYourBudget"
+                            style="@style/txtIntersemibold15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_1pxh"
+                            android:layout_marginEnd="@dimen/_10pxh"
+                            android:ellipsize="end"
+                            android:lineSpacingExtra="@dimen/_4pxh"
+                            android:singleLine="true"
+                            android:text="List Transaksi" />
+
+
+                    </LinearLayout>
+                    <ListView
+                        android:id="@+id/lvTransaksiHome"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        />
+                </LinearLayout>
+            </ScrollView>
+
+
         </LinearLayout>
     </LinearLayout>
 
