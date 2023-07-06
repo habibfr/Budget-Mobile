@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // ganti sesuai php file masing-masing
-                new Konektor(LoginActivity.this, "http://192.168.43.37/pbm/uas/users/cek_login.php", new Uri.Builder().appendQueryParameter("email", editEmail.getText().toString()).appendQueryParameter("password", editPassword.getText().toString())).execute();
+                new Konektor(LoginActivity.this, "http://10.0.2.2/uas/users/cek_login.php", new Uri.Builder().appendQueryParameter("email", editEmail.getText().toString()).appendQueryParameter("password", editPassword.getText().toString())).execute();
             }
         });
 
