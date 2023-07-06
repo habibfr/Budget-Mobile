@@ -49,6 +49,7 @@ public class TransaksiAdapter extends BaseAdapter {
         TextView txtTglTglTrxHome = view.findViewById(R.id.tglTglTrxHome);
         TextView txtAmountTrxHome = view.findViewById(R.id.txtAmountTrxHome);
         TextView txtTypeTrxHome = view.findViewById(R.id.txtTypeTrxHome);
+        LinearLayout layoutItemTransaksi = view.findViewById(R.id.layoutItemTransaksi);
 
         txtShopping.setText(currentTrx.getTitle());
         txtTglTglTrxHome.setText(currentTrx.getDate());
@@ -56,8 +57,10 @@ public class TransaksiAdapter extends BaseAdapter {
         txtAmountTrxHome.setText(String.format(amount));
         txtTypeTrxHome.setText(currentTrx.getType());
         if(currentTrx.getType().equals("Keluar")){
+
             btnCar.setImageResource(R.drawable.img_calendar);
-            btnCar.setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.rectangle_bg_gray_301_radius_24));
+            layoutItemTransaksi.setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.rectangle_bg_gray_301_radius_20));
+//            btnCar.setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.rectangle_bg_gray_301_radius_24));
         }
 
         return view;

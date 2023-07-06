@@ -1,37 +1,27 @@
 package com.habibfr.budget_buddy;
 
 public class Saldo {
-    private int user_id;
-    private String fullname;
-    private String saldo;
+    private int saldo;
+    private String type;
 
-    public Saldo(int user_id, String fullname, String saldo) {
-        this.user_id = user_id;
-        this.fullname = fullname;
+    public Saldo(int saldo, String type) {
         this.saldo = saldo;
+        this.type = type;
     }
 
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
-    }
-
-    public String getFullname() {
-        return fullname;
-    }
-
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
-    }
-
-    public String getSaldo() {
+    public int getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(String saldo) {
+    public void setSaldo(int saldo) {
         this.saldo = saldo;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

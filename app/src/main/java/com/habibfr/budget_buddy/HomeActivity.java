@@ -50,6 +50,8 @@ public class HomeActivity extends AppCompatActivity {
     ListView lvTransaksiHome;
     GridView gvSaldoHome;
     SaldoAdapter saldoAdapter;
+    int saldoMasuk = 0;
+    int saldoKeluar = 0;
 
 
     @Override
@@ -69,10 +71,7 @@ public class HomeActivity extends AppCompatActivity {
         txtCashInCard = findViewById(R.id.txtCashInCard);
         gvSaldoHome = findViewById(R.id.gvSaldoHome);
 
-        saldoAdapter = new SaldoAdapter(getApplicationContext(), saldoList);
-        saldoList.add(new Saldo(1, "Income", "200000"));
-        saldoList.add(new Saldo(2, "Oucome", "100000"));
-        gvSaldoHome.setAdapter(saldoAdapter);
+
 
         Intent intentFromLogin = getIntent();
         if (intentFromLogin != null) {
@@ -108,7 +107,18 @@ public class HomeActivity extends AppCompatActivity {
                         String created_at = data.getString("created_at");
 //                        System.out.println(date);
                         transaksiList.add(new Transaksi(transaction_id, user_id, title, date, type, Long.parseLong(amount), additional_info, created_at));
+                        if (type.equals("Masuk")){
+                            saldoMasuk += Integer.parseInt(amount);
+                        }else{
+                            saldoKeluar += Integer.parseInt(amount);
+                        }
                     }
+                    saldoList.add(new Saldo(saldoMasuk, "Income"));
+                    saldoList.add(new Saldo(saldoKeluar, "Expensive"));
+                    saldoAdapter = new SaldoAdapter(getApplicationContext(), saldoList);
+                    saldoAdapter.notifyDataSetChanged();
+                    gvSaldoHome.setAdapter(saldoAdapter);
+
                     transaksiAdapter = new TransaksiAdapter(getApplicationContext(), transaksiList);
                     transaksiAdapter.notifyDataSetChanged();
 //                    System.out.println(transaksiList.size());
