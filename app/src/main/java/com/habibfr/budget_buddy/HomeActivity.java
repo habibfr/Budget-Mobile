@@ -39,8 +39,8 @@ public class HomeActivity extends AppCompatActivity {
     TextView helloUsername, txtCashInCard;
     static String username = "";
     static int user_id = 0;
-    private String URL = "http://192.168.43.37/pbm/uas/transactions/get_transactions.php";
-    private final String URL_SALDO = "http://192.168.43.37/pbm/uas/transactions/get_saldo_per_account.php";
+    private String URL = "http://10.0.2.2/uas/transactions/get_transactions.php";
+    private final String URL_SALDO = "http://10.0.2.2/uas/transactions/get_saldo_per_account.php";
     StringRequest stringRequest, stringRequestSaldo;
     RequestQueue requestQueue;
 

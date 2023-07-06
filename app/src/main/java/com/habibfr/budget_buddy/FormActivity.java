@@ -57,12 +57,12 @@ public class FormActivity extends AppCompatActivity {
         title = findViewById(R.id.title);
         amount = findViewById(R.id.amount);
         additional_info = findViewById(R.id.additional_info);
-        user_id=getIntent().getIntExtra("user_id", 0);
+        int user_id=getIntent().getIntExtra("user_id", 0);
         Button btnsub = findViewById(R.id.submit);
         btnsub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String id = "1";
+                int id = user_id;
                 String tipe = type.getText().toString();
                 String tgl = tanggal.getText().toString();
                 String judul = title.getText().toString();
@@ -88,7 +88,7 @@ public class FormActivity extends AppCompatActivity {
                 }){
                     protected Map<String, String> getParams(){
                         Map<String, String> paramV = new HashMap<>();
-                        paramV.put("user_id",id);
+                        paramV.put("user_id",String.valueOf(id));
                         paramV.put("type", tipe);
                         paramV.put("date", tgl);
                         paramV.put("title", judul);
