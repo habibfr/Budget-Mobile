@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_marginBottom="@dimen/_10pxh"
+    style="@style/groupStylegray_300cornerRadius"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
@@ -65,7 +67,7 @@
         android:layout_marginEnd="@dimen/_19pxh"
         android:layout_marginBottom="@dimen/_26pxv"
         android:layout_weight="0.19"
-        android:gravity="end"
+        android:gravity="start"
         android:orientation="vertical">
 
         <TextView

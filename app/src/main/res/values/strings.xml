@@ -34,5 +34,5 @@
     <string name="lbl_mar">Mar</string>
     <string name="lbl_jan">Jan</string>
     <string name="msg_riwayat_transak">Riwayat Transaksi</string>
-    <string name="lbl_tanggal_awal">Tanggal awal</string>
+    <string name="lbl_tanggal_awal">Pilih Bulan</string>
 </resources>

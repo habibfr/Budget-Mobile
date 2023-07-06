@@ -87,80 +87,20 @@
                 android:singleLine="true"
                 android:text="@string/lbl_tanggal_awal" />
 
-            <FrameLayout
-                android:id="@+id/frameInput"
-                style="@style/groupStylewhite_A700cornerRadius"
-                android:layout_width="@dimen/_153pxh"
-                android:layout_height="@dimen/_40pxv"
-                android:layout_marginTop="@dimen/_4pxv"
-                android:layout_marginEnd="@dimen/_10pxh">
-
-                <ImageView
-                    android:id="@+id/imageArrowdownOne"
-                    android:layout_width="@dimen/_14pxh"
-                    android:layout_height="@dimen/_8pxh"
-                    android:layout_gravity="end"
-                    android:layout_marginStart="@dimen/_12pxh"
-                    android:layout_marginTop="@dimen/_15pxv"
-                    android:layout_marginEnd="@dimen/_12pxh"
-                    android:layout_marginBottom="@dimen/_15pxv"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_arrowdown_gray_900"
-                    tools:ignore="ContentDescription"
-                    tools:src="@drawable/img_arrowdown_gray_900" />
-            </FrameLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearBase1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_14pxv"
-            android:layout_marginEnd="@dimen/_25pxh"
-            android:layout_marginBottom="@dimen/_402pxv"
-            android:layout_weight="0.45"
-            android:gravity="start"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/txtLabelOne"
-                style="@style/txtIntersemibold16"
-                android:layout_width="match_parent"
+            <Spinner
+                android:id="@+id/spinnerLaporanDate"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_10pxh"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="@string/lbl_tanggal_akhir" />
-
-            <FrameLayout
-                android:id="@+id/frameInput1"
-                style="@style/groupStylewhite_A700cornerRadius"
-                android:layout_width="@dimen/_153pxh"
-                android:layout_height="@dimen/_40pxv"
-                android:layout_marginTop="@dimen/_4pxv">
-
-                <ImageView
-                    android:id="@+id/imageArrowdownTwo"
-                    android:layout_width="@dimen/_14pxh"
-                    android:layout_height="@dimen/_8pxh"
-                    android:layout_gravity="end"
-                    android:layout_marginStart="@dimen/_12pxh"
-                    android:layout_marginTop="@dimen/_15pxv"
-                    android:layout_marginEnd="@dimen/_12pxh"
-                    android:layout_marginBottom="@dimen/_15pxv"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_arrowdown_gray_900"
-                    tools:ignore="ContentDescription"
-                    tools:src="@drawable/img_arrowdown_gray_900" />
-            </FrameLayout>
+                android:background="@drawable/rectangle_bg_white_a700_radius_20" />
         </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearColumn"
         style="@style/groupStylegray_100cornerRadius"
         android:layout_width="408dp"
-        android:layout_height="384dp"
+        android:layout_height="@dimen/_390pxh"
         android:layout_gravity="bottom|start"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@id/linearRowlabel"
@@ -195,6 +135,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_16pxv"
                 android:orientation="vertical" />
+
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtTidakAdaTransaksi"
+            style="@style/txtInterNormal20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Tidak ada transaksi" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

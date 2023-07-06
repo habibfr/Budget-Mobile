@@ -29,7 +29,8 @@ public class TransaksiAdapterLaporan extends RecyclerView.Adapter<TransaksiAdapt
     public void onBindViewHolder(@NonNull TransaksiViewHolder holder, int position) {
         Transaksi transaksi = transaksiList.get(position);
 
-        holder.judul.setText(transaksi.getTitle());
+        String txtjudul = transaksi.getTransaction_id() + " " + transaksi.getTitle();
+        holder.judul.setText(txtjudul);
         holder.amount.setText(String.valueOf(transaksi.getAmount()));
         holder.date.setText(transaksi.getDate());
     }
