@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,21 +15,32 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FormActivity extends AppCompatActivity {
 
-    String[] item = {"Pengeluaran","Pemasukkan"};
+    String[] item = {"Keluar","Masuk"};
 
     AutoCompleteTextView autoCompleteTextView;
 
     ArrayAdapter<String> adapterItems;
 
-    Button btn, pilihTanggal;
+    Button btn, pilihTanggal, btnsub;
 
     EditText tanggal;
 
+    EditText title, amount, additional_info;
 
+    AutoCompleteTextView type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +52,56 @@ public class FormActivity extends AppCompatActivity {
         autoCompleteTextView.setAdapter(adapterItems);
         pilihTanggal = (Button) findViewById(R.id.InputTanggal);
         showDateDialog();
-        tanggal = (EditText) findViewById(R.id.inputViewTanggal_transaksi);
+        type = findViewById(R.id.auto_complete_txt);
+        tanggal = findViewById(R.id.inputViewTanggal_transaksi);
+        title = findViewById(R.id.title);
+        amount = findViewById(R.id.amount);
+        additional_info = findViewById(R.id.additional_info);
+        int user_id=getIntent().getIntExtra("user_id", 0);
+        Button btnsub = findViewById(R.id.submit);
+        btnsub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int id = user_id;
+                String tipe = type.getText().toString();
+                String tgl = tanggal.getText().toString();
+                String judul = title.getText().toString();
+                String total = amount.getText().toString();
+                String keterangan = additional_info.getText().toString();
+                RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                String url ="http://10.0.2.2/uas/transactions/add_transaction.php";
+
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                if (response.equalsIgnoreCase("success")) {
+                                    Toast.makeText(getApplicationContext(), "Data Success : " + response, Toast.LENGTH_SHORT).show();
+                                }else
+                                    Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("error", error.getLocalizedMessage());
+                    }
+                }){
+                    protected Map<String, String> getParams(){
+                        Map<String, String> paramV = new HashMap<>();
+                        paramV.put("user_id",String.valueOf(id));
+                        paramV.put("type", tipe);
+                        paramV.put("date", tgl);
+                        paramV.put("title", judul);
+                        paramV.put("amount", total);
+                        paramV.put("additional_info", keterangan);
+                        return paramV;
+                    }
+
+                };
+
+                queue.add(stringRequest);
+            }
+        });
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -72,7 +133,7 @@ public class FormActivity extends AppCompatActivity {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(FormActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        tanggal.setText(day + "-" + (month + 1) + "-" + year);
+                        tanggal.setText(year + "-" + (month + 1) + "-" + day);
                     }
                 }, currentYear, currentMonth, currentDate);
                 datePickerDialog.show();
