@@ -60,7 +60,6 @@
         android:layout_marginHorizontal="20dp"
         android:background="@drawable/border"
         android:hint="budy@gmail.com"
-        android:text="abiabi@gmail.com"
         android:inputType="textEmailAddress"
         android:paddingHorizontal="20dp"
         android:paddingVertical="15dp" />
@@ -82,7 +81,6 @@
         android:layout_marginHorizontal="20dp"
         android:background="@drawable/border"
         android:hint="********"
-        android:text="abiabi"
         android:inputType="textPassword"
         android:paddingHorizontal="20dp"
         android:paddingVertical="15dp" />

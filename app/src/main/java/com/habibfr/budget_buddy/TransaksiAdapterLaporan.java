@@ -1,12 +1,16 @@
 package com.habibfr.budget_buddy;
 
 import android.text.Layout;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -33,6 +37,10 @@ public class TransaksiAdapterLaporan extends RecyclerView.Adapter<TransaksiAdapt
         holder.judul.setText(txtjudul);
         holder.amount.setText(String.valueOf(transaksi.getAmount()));
         holder.date.setText(transaksi.getDate());
+        if (transaksi.getType().equalsIgnoreCase("Keluar")) {
+            holder.imgCar.setImageResource(R.drawable.img_calendar);
+            holder.rowLaporan.setBackground(ContextCompat.getDrawable(holder.rowLaporan.getContext(), R.drawable.rectangle_bg_gray_301_radius_20));
+        }
     }
 
     @Override
@@ -42,12 +50,16 @@ public class TransaksiAdapterLaporan extends RecyclerView.Adapter<TransaksiAdapt
 
     public static class TransaksiViewHolder extends RecyclerView.ViewHolder {
         TextView judul, amount, date;
+        ImageView imgCar;
+        LinearLayout rowLaporan;
 
         public TransaksiViewHolder(View itemView) {
             super(itemView);
             judul = itemView.findViewById(R.id.txtShopping);
             amount = itemView.findViewById(R.id.txtAmountLaporan);
             date = itemView.findViewById(R.id.txtTanggalLaporan);
+            rowLaporan = itemView.findViewById(R.id.linearLayoutRowLaporan);
+            imgCar = itemView.findViewById(R.id.btnCar);
         }
     }
 }

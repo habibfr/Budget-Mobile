@@ -1,5 +1,6 @@
 package com.habibfr.budget_buddy;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -42,6 +44,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -62,7 +66,7 @@ public class LaporanActivity extends AppCompatActivity {
     List<String> monthList = new ArrayList<>();
 
     //        URL COLLECTION
-    String dirURL = "http://192.168.43.37/pbm/uas";
+    String dirURL = "http://192.168.1.13/api-budget-buddy";
     String urlLaporan = dirURL.concat("/transactions/get_transaction_per_month.php");
     String urlSpinner = dirURL.concat("/transactions/get_min_date.php");
 
@@ -92,6 +96,24 @@ public class LaporanActivity extends AppCompatActivity {
         getMinYearonTransaksi(urlSpinner, calendar);
     }
 
+    //    private void onClickRecyclerView() {
+//        transaksiRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+//            @Override
+//            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+//                return false;
+//            }
+//
+//            @Override
+//            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+//
+//            }
+//
+//            @Override
+//            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+//
+//            }
+//        });
+//    }
     private void onClickItemSpinner(Spinner monthSpinner) {
         monthSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -132,15 +154,17 @@ public class LaporanActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 try {
                     JSONObject iniresponse = new JSONObject(response);
-                    JSONArray arr = iniresponse.getJSONArray("data");
-                    for (int i = 0; i < arr.length(); i++) {
-                        JSONObject inidata = arr.getJSONObject(i);
-                        minYear = inidata.getInt("MIN_YEAR");
-                        minMonth = inidata.getInt("MIN_MONTH");
-                        maxYear = inidata.getInt("MAX_YEAR");
-                    }
+                    if (iniresponse.getString("status").equalsIgnoreCase("1")) {
+                        JSONArray arr = iniresponse.getJSONArray("data");
+                        for (int i = 0; i < arr.length(); i++) {
+                            JSONObject inidata = arr.getJSONObject(i);
+                            minYear = inidata.getInt("MIN_YEAR");
+                            minMonth = inidata.getInt("MIN_MONTH");
+                            maxYear = inidata.getInt("MAX_YEAR");
+                        }
 
-                    monthListforSpinnerLaporan(calendar, url);
+                        monthListforSpinnerLaporan(calendar, url);
+                    }
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
@@ -192,7 +216,7 @@ public class LaporanActivity extends AppCompatActivity {
     }
 
     private void callTransaction(String url, String dateSelectedItem) {
-        Toast.makeText(this, dateSelectedItem, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, dateSelectedItem, Toast.LENGTH_SHORT).show();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -201,20 +225,42 @@ public class LaporanActivity extends AppCompatActivity {
                     masuk = new ArrayList<Entry>();
                     keluar = new ArrayList<Entry>();
 
-                    int status = objectAcc.getInt("status");
+                    masuk.clear();
+                    keluar.clear();
+
+                    String status = objectAcc.getString("status");
                     transaksiAdapterLaporan = new TransaksiAdapterLaporan(transaksiList);
                     transaksiList.clear();
-                    if (objectAcc.has("data")) {
+                    if (status.equalsIgnoreCase("1")) {
 //                        Toast.makeText(LaporanActivity.this, objectAcc.getString("message"), Toast.LENGTH_SHORT).show();
                         JSONArray jsonArray = objectAcc.getJSONArray("data");
+                        String tanggalSebelumnya = ""; // Inisialisasi dengan tanggal pertama dari data transaksi
+                        int totalMasuk = 0;
+                        int totalKeluar = 0;
+//                        String tempDate = "";
+//                        int tempI = 0, totalKeluar = 0, totalMasuk = 0;
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject item = jsonArray.getJSONObject(i);
+
+                            // Periksa perbedaan tanggal
+                            if (!item.getString("date").equalsIgnoreCase(tanggalSebelumnya)) {
+                                // Simpan totalMasuk dan totalKeluar ke dalam struktur data yang sesuai (misalnya, ArrayList<Entry>) dengan menggunakan indeks sebelumnya sebagai referensi
+                                masuk.add(new Entry(i - 1, totalMasuk));
+                                keluar.add(new Entry(i - 1, totalKeluar));
+
+                                // Setel totalMasuk dan totalKeluar ke 0 karena telah memasuki hari baru
+                                totalMasuk = 0;
+                                totalKeluar = 0;
+                            }
+
+                            // Tetapkan tanggal transaksi saat ini sebagai tanggalSebelumnya
+                            tanggalSebelumnya = item.getString("date");
+
+                            // Akumulasikan jumlah transaksi "Masuk" dan "Keluar"
                             if (item.getString("type").equalsIgnoreCase("Masuk")) {
-//                                Log.d("TAG", "onResponse: " + item.getString("amount"));
-                                masuk.add(new Entry(i, Float.parseFloat(item.getString("amount"))));
+                                totalMasuk += item.getInt("amount");
                             } else {
-//                                Log.d("TAG", "onResponse: " + item.getString("amount"));
-                                keluar.add(new Entry(i, Float.parseFloat(item.getString("amount"))));
+                                totalKeluar += item.getInt("amount");
                             }
 
 //                            FORMAT TANGGAL, DIUBAH DARI 'YYYY-MM-DD' MENJADI 'DD-MM-YYYY'
@@ -230,19 +276,26 @@ public class LaporanActivity extends AppCompatActivity {
                             transaksiList.add(transaksi);
                         }
 
-                        setUpLineChart();
+                        // Simpan totalMasuk dan totalKeluar dari transaksi terakhir
+                        masuk.add(new Entry(jsonArray.length() - 1, totalMasuk));
+                        keluar.add(new Entry(jsonArray.length() - 1, totalKeluar));
 
+                        Collections.reverse(transaksiList);
+                        setUpLineChart();
                         Log.d("TRANSAKSI LIST", "onCreate: " + transaksiList);
-                        transaksiRecyclerView.setAdapter(transaksiAdapterLaporan);
+//                        transaksiRecyclerView.setAdapter(transaksiAdapterLaporan);
                         findViewById(R.id.txtTidakAdaTransaksi).setVisibility(View.GONE);
                         transaksiRecyclerView.setVisibility(View.VISIBLE);
                     } else {
-                        Toast.makeText(LaporanActivity.this, objectAcc.getString("message"), Toast.LENGTH_SHORT).show();
-                        transaksiRecyclerView.setAdapter(transaksiAdapterLaporan);
+                        masuk.clear();
+                        keluar.clear();
+                        setUpLineChart();
+//                        Toast.makeText(LaporanActivity.this, objectAcc.getString("message"), Toast.LENGTH_SHORT).show();
+//                        transaksiRecyclerView.setAdapter(transaksiAdapterLaporan);
                         findViewById(R.id.txtTidakAdaTransaksi).setVisibility(View.VISIBLE);
                         transaksiRecyclerView.setVisibility(View.GONE);
                     }
-
+                    transaksiRecyclerView.setAdapter(transaksiAdapterLaporan);
                 } catch (JSONException | ParseException e) {
                     throw new RuntimeException(e);
                 }

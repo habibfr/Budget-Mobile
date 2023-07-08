@@ -1,5 +1,6 @@
 package com.habibfr.budget_buddy;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -28,7 +29,7 @@ import java.util.Map;
 
 public class FormActivity extends AppCompatActivity {
 
-    String[] item = {"Keluar","Masuk"};
+    String[] item = {"Keluar", "Masuk"};
 
     AutoCompleteTextView autoCompleteTextView;
 
@@ -46,9 +47,14 @@ public class FormActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
+
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.hide();
+
         autoCompleteTextView = findViewById(R.id.auto_complete_txt);
         // untuk dropdown
-        adapterItems = new ArrayAdapter<String>(this,R.layout.list_transaksi,item);
+        adapterItems = new ArrayAdapter<String>(this, R.layout.list_transaksi, item);
         autoCompleteTextView.setAdapter(adapterItems);
         pilihTanggal = (Button) findViewById(R.id.InputTanggal);
         showDateDialog();
@@ -57,7 +63,7 @@ public class FormActivity extends AppCompatActivity {
         title = findViewById(R.id.title);
         amount = findViewById(R.id.amount);
         additional_info = findViewById(R.id.additional_info);
-        int user_id=getIntent().getIntExtra("user_id", 0);
+        int user_id = getIntent().getIntExtra("user_id", 0);
         Button btnsub = findViewById(R.id.submit);
         btnsub.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,26 +75,31 @@ public class FormActivity extends AppCompatActivity {
                 String total = amount.getText().toString();
                 String keterangan = additional_info.getText().toString();
                 RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-                String url ="http://10.0.2.2/uas/transactions/add_transaction.php";
+                String url = "http://192.168.43.37/pbm/uas/transactions/add_transaction.php";
 
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                if (response.equalsIgnoreCase("success")) {
-                                    Toast.makeText(getApplicationContext(), "Data Success : " + response, Toast.LENGTH_SHORT).show();
-                                }else
-                                    Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+//                                if (response.equalsIgnoreCase("success")) {
+//                                    Toast.makeText(getApplicationContext(), "Data Success : " + response, Toast.LENGTH_SHORT).show();
+//                                }else{
+//
+//                                }
+                                Intent intentToHome = new Intent(FormActivity.this, HomeActivity.class);
+                                Toast.makeText(getApplicationContext(), "Data Success Ditambahkan", Toast.LENGTH_SHORT).show();
+                                startActivity(intentToHome);
+                                finish();
                             }
                         }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.e("error", error.getLocalizedMessage());
                     }
-                }){
-                    protected Map<String, String> getParams(){
+                }) {
+                    protected Map<String, String> getParams() {
                         Map<String, String> paramV = new HashMap<>();
-                        paramV.put("user_id",String.valueOf(id));
+                        paramV.put("user_id", String.valueOf(id));
                         paramV.put("type", tipe);
                         paramV.put("date", tgl);
                         paramV.put("title", judul);
@@ -106,10 +117,10 @@ public class FormActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String item = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(FormActivity.this,"item : "+item,Toast.LENGTH_SHORT).show();
+                Toast.makeText(FormActivity.this, "item : " + item, Toast.LENGTH_SHORT).show();
             }
         });
-        btn=findViewById(R.id.btn_batal);
+        btn = findViewById(R.id.btn_batal);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,6 +130,7 @@ public class FormActivity extends AppCompatActivity {
             }
         });
     }
+
     private void showDateDialog() {
         pilihTanggal.setOnClickListener(new View.OnClickListener() {
             @Override
