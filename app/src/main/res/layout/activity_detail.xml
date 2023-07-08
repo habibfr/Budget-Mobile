@@ -140,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:paddingVertical="14dp"
                 android:textSize="16dp"
-                android:hint="Batal"
+                android:hint="OK"
                 android:textColorHint="@color/white"
                 />
         </LinearLayout>
