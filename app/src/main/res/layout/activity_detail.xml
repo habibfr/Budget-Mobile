@@ -3,33 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".DetailActivityActivity">
+    android:layout_height="match_parent">
+
     <LinearLayout
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/LL1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/green_300"
         android:gravity="center"
         android:orientation="horizontal"
-        android:background="@color/green_300"
-        >
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <ImageView
+            android:id="@+id/logo"
             android:layout_width="100dp"
             android:layout_height="97.6dp"
-            android:src="@drawable/logo_putih"
-            android:id="@+id/logo"
-            android:layout_marginBottom="66dp"
-            android:layout_marginTop="66dp"
-            />
+            android:layout_marginVertical="40dp"
+            android:src="@drawable/logo_putih" />
     </LinearLayout>
 
     <LinearLayout
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/LL2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,7 +32,9 @@
         android:orientation="vertical"
         android:paddingLeft="29dp"
         android:paddingRight="29dp"
-        >
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
@@ -48,13 +45,12 @@
             android:textSize="17dp" />
 
         <EditText
+            android:id="@+id/tipe_transaksi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter"
-            android:hint="Beli Sampo HSR"
-            android:textSize="17dp"
-            android:id="@+id/tipe_transaksi"
-            />
+            android:hint="Masuk"
+            android:textSize="17dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -64,13 +60,12 @@
             android:textSize="17dp" />
 
         <EditText
+            android:id="@+id/judul"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter"
             android:hint="Beli Sampo HSR"
-            android:textSize="17dp"
-            android:id="@+id/judul"
-            />
+            android:textSize="17dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -81,8 +76,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
 
             <EditText
@@ -94,6 +89,7 @@
                 android:hint="01-01-2023" />
 
         </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -102,13 +98,12 @@
             android:textSize="17dp" />
 
         <EditText
+            android:id="@+id/amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter"
             android:hint="Rp.20000"
-            android:textSize="17dp"
-            android:id="@+id/amount"
-            />
+            android:textSize="17dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -118,31 +113,29 @@
             android:textSize="17dp" />
 
         <EditText
+            android:id="@+id/keterangan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter"
             android:hint="Beli Sampo HSR Di stasiun wonokromo"
-            android:textSize="17dp"
-            android:id="@+id/keterangan"
-            />
+            android:textSize="17dp" />
 
         <LinearLayout
             android:id="@+id/LL3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:paddingTop="30dp"
-            android:paddingBottom="30dp"
-            android:orientation="horizontal">
+            android:paddingBottom="30dp">
 
             <Button
                 android:id="@+id/btn_ok"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="14dp"
-                android:textSize="16dp"
                 android:hint="OK"
+                android:paddingVertical="14dp"
                 android:textColorHint="@color/white"
-                />
+                android:textSize="16dp" />
         </LinearLayout>
 
 

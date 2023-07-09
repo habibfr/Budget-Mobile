@@ -66,7 +66,7 @@ public class LaporanActivity extends AppCompatActivity {
     List<String> monthList = new ArrayList<>();
 
     //        URL COLLECTION
-    String dirURL = "http://192.168.1.13/api-budget-buddy";
+    String dirURL = "http://192.168.43.37/pbm/uas";
     String urlLaporan = dirURL.concat("/transactions/get_transaction_per_month.php");
     String urlSpinner = dirURL.concat("/transactions/get_min_date.php");
 

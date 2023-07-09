@@ -10,11 +10,13 @@ import android.os.Bundle;
 import android.text.Layout;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -85,6 +87,11 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         helloUsername.setText("Hello, " + username);
+
+
+
+
+
         stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -121,7 +128,6 @@ public class HomeActivity extends AppCompatActivity {
 
                     transaksiAdapter = new TransaksiAdapter(getApplicationContext(), transaksiList);
                     transaksiAdapter.notifyDataSetChanged();
-//                    System.out.println(transaksiList.size());
                     lvTransaksiHome.setAdapter(transaksiAdapter);
                 } catch (Exception e) {
                     e.printStackTrace();

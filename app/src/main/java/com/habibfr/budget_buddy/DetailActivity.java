@@ -1,5 +1,6 @@
 package com.habibfr.budget_buddy;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -20,6 +21,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,23 +35,50 @@ public class DetailActivity extends AppCompatActivity {
     private TextView total;
     private TextView ket;
     private Button btn;
+    int transaction_id = 0;
+    int user_id = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        //        HIDE ACTION BAR
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.hide();
+
+        Intent intent = getIntent();
+        if (intent != null) {
+            Bundle s = intent.getExtras();
+            if (s != null) {
+                int id = (int) s.get("transaction_id");
+                int id_user = (int) s.get("user_id");
+                if ((!String.valueOf(id).isEmpty()) || (String.valueOf(id) != null)) {
+                    transaction_id = id;
+                    user_id = id_user;
+                }
+            }
+
+        }
+
         tipe_transaksi = findViewById(R.id.tipe_transaksi);
         judul = findViewById(R.id.judul);
         tanggal = findViewById(R.id.inputViewTanggal_transaksi);
         total = findViewById(R.id.amount);
         ket = findViewById(R.id.keterangan);
+        btn = findViewById(R.id.btn_ok);
+
+        tipe_transaksi.setEnabled(false);
+        judul.setEnabled(false);
+        tanggal.setEnabled(false);
+        total.setEnabled(false);
+        ket.setEnabled(false);
+
         executeRequest();
-        btn=findViewById(R.id.btn_ok);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DetailActivity.this, HomeActivity.class);
-                startActivity(intent);
                 finish();
             }
         });
@@ -55,109 +86,51 @@ public class DetailActivity extends AppCompatActivity {
 
     private void executeRequest() {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://10.0.2.2/uas/transactions/get_transaction.php";
-        int user_id=getIntent().getIntExtra("user_id", 0);
-        int transaction_id=getIntent().getIntExtra("transaction_id", 0);
+        String url = "http://192.168.43.37/pbm/uas/transactions/get_transaction.php";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+//                        System.out.println(response);
+//                       J
                         try {
-                            Gson gson = new Gson();
-                            ResponseData responseData = gson.fromJson(response, ResponseData.class);
-                            Log.d("test", "onResponse: "+responseData);
-                            if (responseData != null && responseData.getStatus() == 1) {
-                                TransactionData transactionData = responseData.getData();
-                                Log.d("test", "onResponse: "+ transactionData.getTransactionId());
-                                if (transactionData != null) {
-                                    Log.d("error", "getParams: "+user_id);
-                                    Log.d("error", "getParams: "+transaction_id);
-                                    tipe_transaksi.setText(String.valueOf(transactionData.getTransactionId()));
-                                    judul.setText(String.valueOf(transactionData.getUserId()));
-                                    tanggal.setText(transactionData.getTitle());
-                                    total.setText(transactionData.getDate());
-                                    ket.setText(transactionData.getType());
-                                } else {
-                                    Log.d("Error", "No transaction data found");
-                                }
-                            } else {
-                                Log.d("Error", "Invalid response or status is not 1");
+                            JSONObject jsonObject = new JSONObject(response);
+                            String status = jsonObject.getString("status");
+
+                            if (status.equalsIgnoreCase("1")) {
+                                JSONObject dataTransaction = jsonObject.getJSONObject("data");
+                                System.out.println(dataTransaction);
+                                String title = dataTransaction.getString("title");
+                                String type = dataTransaction.getString("type");
+                                String amount = dataTransaction.getString("amount");
+                                String additional_info = dataTransaction.getString("additional_info");
+                                String date = dataTransaction.getString("date");
+                                tipe_transaksi.setText(type);
+                                judul.setText(title);
+                                total.setText(amount);
+                                tanggal.setText(date);
+                                ket.setText(additional_info);
                             }
-                        } catch (Exception e) {
-                            Log.e("Error", "Failed to parse JSON response: " + e.getMessage());
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
                         }
+
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("Error", error.getLocalizedMessage());
+                Log.e("Error", error.getMessage());
             }
         }) {
             protected Map<String, String> getParams() {
                 Map<String, String> paramV = new HashMap<>();
-                paramV.put("user_id", String.valueOf(user_id));
                 paramV.put("transaction_id", String.valueOf(transaction_id));
+                paramV.put("user_id", String.valueOf(user_id));
                 return paramV;
             }
         };
 
         queue.add(stringRequest);
-    }
-
-    private class ResponseData {
-        private int status;
-        private TransactionData data;
-
-        public int getStatus() {
-            return status;
-        }
-
-        public TransactionData getData() {
-            return data;
-        }
-    }
-
-    private class TransactionData {
-        private int transaction_id;
-        private int user_id;
-        private String title;
-        private String date;
-        private String type;
-        private String amount;
-        private String additional_info;
-        private String created_at;
-
-        public int getTransactionId() {
-            return transaction_id;
-        }
-
-        public int getUserId() {
-            return user_id;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public String getDate() {
-            return date;
-        }
-
-        public String getType() {
-            return type;
-        }
-
-        public String getAmount() {
-            return amount;
-        }
-
-        public String getAdditionalInfo() {
-            return additional_info;
-        }
-
-        public String getCreatedAt() {
-            return created_at;
-        }
     }
 }
