@@ -46,8 +46,8 @@ public class DetailActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DetailActivity.this, HomeActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(DetailActivity.this, HomeActivity.class);
+//                startActivity(intent);
                 finish();
             }
         });
@@ -73,11 +73,11 @@ public class DetailActivity extends AppCompatActivity {
                                 if (transactionData != null) {
                                     Log.d("error", "getParams: "+user_id);
                                     Log.d("error", "getParams: "+transaction_id);
-                                    tipe_transaksi.setText(String.valueOf(transactionData.getTransactionId()));
+                                    tipe_transaksi.setText(String.valueOf(transactionData.getType()));
                                     judul.setText(String.valueOf(transactionData.getUserId()));
                                     tanggal.setText(transactionData.getTitle());
                                     total.setText(transactionData.getDate());
-                                    ket.setText(transactionData.getType());
+                                    ket.setText(transactionData.getAdditionalInfo());
                                 } else {
                                     Log.d("Error", "No transaction data found");
                                 }
