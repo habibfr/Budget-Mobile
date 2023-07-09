@@ -62,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
 //                    txtMessageError.setVisibility(View.VISIBLE);
 //                }else{
                     System.out.println("sama");
-                    new Konektor(RegisterActivity.this, "http://192.168.43.37/pbm/uas/users/add_user.php", new Uri.Builder().appendQueryParameter("fullname", editFullname.getText().toString()).appendQueryParameter("email", editEmail.getText().toString()).appendQueryParameter("password", editPassword.getText().toString())).execute();
+                    new Konektor(RegisterActivity.this, "http://10.0.2.2/uas/users/add_user.php", new Uri.Builder().appendQueryParameter("fullname", editFullname.getText().toString()).appendQueryParameter("email", editEmail.getText().toString()).appendQueryParameter("password", editPassword.getText().toString())).execute();
 //                }
 
             }
