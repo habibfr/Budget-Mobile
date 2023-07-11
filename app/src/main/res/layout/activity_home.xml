@@ -11,11 +11,11 @@
         android:id="@+id/linearHomeAsli"
         android:layout_width="match_parent"
         android:layout_height="863dp"
-        android:layout_marginTop="@dimen/_20pxv"
-        android:layout_marginStart="@dimen/_33pxh"
-        android:layout_marginEnd="@dimen/_33pxh"
+        android:layout_marginTop="@dimen/_5pxv"
+        android:layout_marginHorizontal="20dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="@dimen/_10pxh"
             android:ellipsize="end"
             android:lineSpacingExtra="@dimen/_4pxh"
@@ -135,7 +135,7 @@
                         <ListView
                             android:id="@+id/lvTransaksiHome"
                             android:layout_width="match_parent"
-                            android:layout_height="400dp"
+                            android:layout_height="350dp"
                             />
 
                     </LinearLayout>

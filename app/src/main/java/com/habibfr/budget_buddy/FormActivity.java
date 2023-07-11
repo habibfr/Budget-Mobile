@@ -75,7 +75,8 @@ public class FormActivity extends AppCompatActivity {
                 String total = amount.getText().toString();
                 String keterangan = additional_info.getText().toString();
                 RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-                String url = "http://192.168.43.37/pbm/uas/transactions/add_transaction.php";
+                String url = "http://172.16.55.12/pbm/uas/transactions/add_transaction.php";
+//                String url = "http://192.168.43.37/pbm/uas/transactions/add_transaction.php";
 
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                         new Response.Listener<String>() {

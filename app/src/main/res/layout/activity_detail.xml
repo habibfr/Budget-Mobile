@@ -20,7 +20,7 @@
             android:id="@+id/logo"
             android:layout_width="100dp"
             android:layout_height="97.6dp"
-            android:layout_marginVertical="40dp"
+            android:layout_marginVertical="80dp"
             android:src="@drawable/logo_putih" />
     </LinearLayout>
 

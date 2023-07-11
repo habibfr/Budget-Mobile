@@ -68,6 +68,7 @@ public class TransaksiAdapter extends BaseAdapter {
                 Intent intentToDetail = new Intent(view.getContext(), DetailActivity.class);
                 intentToDetail.putExtra("transaction_id", currentTrx.getTransaction_id());
                 intentToDetail.putExtra("user_id", currentTrx.getUser_id());
+                intentToDetail.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 view.getContext().startActivity(intentToDetail);
             }
         });

@@ -86,7 +86,8 @@ public class DetailActivity extends AppCompatActivity {
 
     private void executeRequest() {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://192.168.43.37/pbm/uas/transactions/get_transaction.php";
+        String url = "http://172.16.55.12/pbm/uas/transactions/get_transaction.php";
+//        String url = "http://192.168.43.37/pbm/uas/transactions/get_transaction.php";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {

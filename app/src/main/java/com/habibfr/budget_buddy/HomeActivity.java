@@ -30,6 +30,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,12 +39,14 @@ import java.util.Map;
 public class HomeActivity extends AppCompatActivity {
 
     FrameLayout frameTambahTransaksi;
-    ImageView imgFolder;
+    ImageView imgFolder, imageComponentThree, imageUser;
     TextView helloUsername, txtCashInCard;
     static String username = "";
     static int user_id = 0;
-    private String URL = "http://192.168.43.37/pbm/uas/transactions/get_transactions.php";
-    private final String URL_SALDO = "http://192.168.43.37/pbm/uas/transactions/get_saldo_per_account.php";
+    //    private String URL = "http://192.168.43.37/pbm/uas/transactions/get_transactions.php";
+    private String URL = "http://172.16.55.12/pbm/uas/transactions/get_transactions.php";
+    private final String URL_SALDO = "http://172.16.55.12/pbm/uas/transactions/get_saldo_per_account.php";
+    //    private final String URL_SALDO = "http://192.168.43.37/pbm/uas/transactions/get_saldo_per_account.php";
     StringRequest stringRequest, stringRequestSaldo;
     RequestQueue requestQueue;
 
@@ -66,13 +70,14 @@ public class HomeActivity extends AppCompatActivity {
         assert actionBar != null;
         actionBar.hide();
 
+        imageUser = findViewById(R.id.imageUser);
         frameTambahTransaksi = findViewById(R.id.frameStackplus);
         imgFolder = findViewById(R.id.imageFolder);
         helloUsername = findViewById(R.id.helloUsername);
         lvTransaksiHome = findViewById(R.id.lvTransaksiHome);
         txtCashInCard = findViewById(R.id.txtCashInCard);
         gvSaldoHome = findViewById(R.id.gvSaldoHome);
-
+        imageComponentThree = findViewById(R.id.imageComponentThree);
 
 
         Intent intentFromLogin = getIntent();
@@ -87,9 +92,6 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         helloUsername.setText("Hello, " + username);
-
-
-
 
 
         stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
@@ -114,9 +116,9 @@ public class HomeActivity extends AppCompatActivity {
                         String created_at = data.getString("created_at");
 //                        System.out.println(date);
                         transaksiList.add(new Transaksi(transaction_id, user_id, title, date, type, Long.parseLong(amount), additional_info, created_at));
-                        if (type.equals("Masuk")){
+                        if (type.equals("Masuk")) {
                             saldoMasuk += Integer.parseInt(amount);
-                        }else{
+                        } else {
                             saldoKeluar += Integer.parseInt(amount);
                         }
                     }
@@ -126,6 +128,7 @@ public class HomeActivity extends AppCompatActivity {
                     saldoAdapter.notifyDataSetChanged();
                     gvSaldoHome.setAdapter(saldoAdapter);
 
+                    Collections.reverse(transaksiList);
                     transaksiAdapter = new TransaksiAdapter(getApplicationContext(), transaksiList);
                     transaksiAdapter.notifyDataSetChanged();
                     lvTransaksiHome.setAdapter(transaksiAdapter);
@@ -158,7 +161,7 @@ public class HomeActivity extends AppCompatActivity {
                     JSONObject datas = jsonObj.getJSONObject("data");
                     System.out.println(datas);
                     String saldo = datas.getString("saldo");
-                    txtCashInCard.setText("Rp. " +saldo);
+                    txtCashInCard.setText("Rp. " + saldo);
 
 
                 } catch (Exception e) {
@@ -189,14 +192,34 @@ public class HomeActivity extends AppCompatActivity {
             Intent intent = new Intent(HomeActivity.this, FormActivity.class);
             intent.putExtra("user_id", user_id);
             startActivity(intent);
-            finish();
+//            finish();
         });
 
         imgFolder.setOnClickListener(view -> {
             Intent intent = new Intent(HomeActivity.this, LaporanActivity.class);
             intent.putExtra("user_id", user_id);
             startActivity(intent);
-            finish();
+//            finish();
+        });
+
+        imageComponentThree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, HistoryActivity.class);
+                intent.putExtra("user_id", user_id);
+                startActivity(intent);
+
+            }
+        });
+
+        imageUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(HomeActivity.this, ProfilActivity.class);
+                intent.putExtra("user_id", user_id);
+                startActivity(intent);
+//                finish();
+            }
         });
     }
 }
